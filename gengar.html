@@ -8,18 +8,11 @@
       document.body.style.backgroundColor="rgb(255,0,0)";
     }
     
-    function sliderChangeR(){
+    function sliderChange(r,g,b){
       var sliderVal = document.getElementById('slider').value;
       document.body.style.backgroundColor=("rgb("+sliderVal+","+0+","+0+")")
     }
-    function sliderChangeG(){
-      var sliderVal = document.getElementById('slider').value;
-      document.body.style.backgroundColor=("rgb("+0+","+sliderVal+","+0+")")
-    }
-    function sliderChangeB(){
-      var sliderVal = document.getElementById('slider').value;
-      document.body.style.backgroundColor=("rgb("+0+","+0+","+sliderVal+")")
-    }
+
   </script>
   
   <b> All About Gengars </b>
@@ -27,13 +20,13 @@
   <h1> Links: </h1>
   
   <p>
-  <a href="index.html"> Go Back to the Home Page </a>
+  <a href="index.html"> Go Back to the Home Page </a> <br>
     
-  <button onclick="buttonPress()">Please don't feed the Gengars After Midnight</button>
+  <button onclick="buttonPress()">Please don't feed the Gengars After Midnight</button> <br>
     
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeR()"/> <br>
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeG()"/> <br>
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeB()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/> <br>
     
   </p>
   
