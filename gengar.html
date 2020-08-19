@@ -4,14 +4,31 @@
 <body>
   
   <script>
+    var r = 255;
+    var g = 255;
+    var b = 255;
     function buttonPress(){
       document.body.style.backgroundColor="rgb(255,0,0)";
     }
     
-    function sliderChange(r,g,b){
+    function sliderChange(){
       var sliderVal = document.getElementById('slider').value;
-      document.body.style.backgroundColor=("rgb("+sliderVal+","+0+","+0+")")
+      document.body.style.backgroundColor=("rgb("+r+","+g+","+b+")")
     }
+    
+    function sliderChangeR(val){
+      r = val;
+      sliderChange();
+    }
+    function sliderChangeG(val){
+      g = val;
+      sliderChange();
+    }
+    function sliderChangeB(val){
+      b = val;
+      sliderChange();
+    }
+  </script>
 
   </script>
   
@@ -24,9 +41,9 @@
     
   <button onclick="buttonPress()">Please don't feed the Gengars After Midnight</button> <br>
     
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/> <br>
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/> <br>
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeR()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeG()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeB()"/> <br>
     
   </p>
   
