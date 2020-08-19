@@ -8,9 +8,17 @@
       document.body.style.backgroundColor="rgb(255,0,0)";
     }
     
-    function sliderChange(){
+    function sliderChangeR(){
       var sliderVal = document.getElementById('slider').value;
       document.body.style.backgroundColor=("rgb("+sliderVal+","+0+","+0+")")
+    }
+    function sliderChangeG(){
+      var sliderVal = document.getElementById('slider').value;
+      document.body.style.backgroundColor=("rgb("+0+","+sliderVal+","+0+")")
+    }
+    function sliderChangeB(){
+      var sliderVal = document.getElementById('slider').value;
+      document.body.style.backgroundColor=("rgb("+0+","+0+","+sliderVal+")")
     }
   </script>
   
@@ -23,7 +31,9 @@
     
   <button onclick="buttonPress()">Please don't feed the Gengars After Midnight</button>
     
-  <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeR()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeG()"/> <br>
+  <input type="range" id="slider" min="0" max="255" onchange="sliderChangeB()"/> <br>
     
   </p>
   
