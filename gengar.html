@@ -10,7 +10,7 @@
     
     function sliderChange(){
       var sliderVal = document.getElementById('slider').value;
-      document.body.style.backgroundColor=("rgb("+sliderVal+","+sliderVal+","+sliderVal+")")
+      document.body.style.backgroundColor=("rgb("+sliderVal+","+0+","+0+")")
     }
   </script>
   
@@ -20,8 +20,11 @@
   
   <p>
   <a href="index.html"> Go Back to the Home Page </a>
+    
   <button onclick="buttonPress()">Please don't feed the Gengars After Midnight</button>
+    
   <input type="range" id="slider" min="0" max="255" onchange="sliderChange()"/>
+    
   </p>
   
 </body>
