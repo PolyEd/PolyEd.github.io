@@ -62,7 +62,9 @@
     }
     
     if ((Math.abs(x-goalX))**2 + (Math.abs(y-goalY))**2 < (playerSize+goalSize)**2){
-      playerSize += 5;
+      if(playerSize < 50){
+        playerSize += 5;
+      }
       goalX = Math.random() * canvas.width;
       goalY = Math.random() * canvas.height;
     }
