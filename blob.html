@@ -44,7 +44,7 @@ canvas{ border: 2px solid black;}
  
   var goalX = Math.random() * window.innerWidth;
   var goalY = Math.random() * window.innerHeight;
-  var playerSize = 25;
+  var playerSize = 50;
   var goalSize = 15;
 
   var speed = 3;
@@ -84,7 +84,7 @@ canvas{ border: 2px solid black;}
     }
    
     if ((Math.abs(x-goalX))**2 + (Math.abs(y-goalY))**2 < (playerSize+goalSize)**2){
-      playerSize += 5;
+      //playerSize += 5;
       goalX = Math.random() * canvas.width;
       goalY = Math.random() * canvas.height;
     }
