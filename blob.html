@@ -48,8 +48,13 @@ canvas{ border: 2px solid black;}
   var goalSize = 15;
 
   var speed = 3;
+ 
+  
+  
+
   function draw() {
    
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -84,8 +89,9 @@ canvas{ border: 2px solid black;}
       goalX = Math.random() * canvas.width;
       goalY = Math.random() * canvas.height;
     }
-    var character = new Path2D();
-    character.arc(x, y, playerSize, 0, 2 * Math.PI)
+    //var character = new Path2D();
+    var character = new Image();
+    character.src = 'link1 (2).png';
    
     var goal = new Path2D();
     goal.arc(goalX, goalY, goalSize, 0, 2 * Math.PI)
