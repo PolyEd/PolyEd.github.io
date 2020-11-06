@@ -89,7 +89,7 @@ canvas{ border: 2px solid black;}
       goalY = Math.random() * canvas.height;
     }
     //var character = new Path2D();
-    
+    ////////////////////////////////////////////////////////////////////
      var character = new Image();
     toggle += 1;
     toggle %= 100;
@@ -101,7 +101,7 @@ canvas{ border: 2px solid black;}
      // execute drawImage statements here
     ctx.drawImage(character, x, y);
     }, false);
-    
+    ////////////////////////////////////////////////////////////////////
     var goal = new Path2D();
     goal.arc(goalX, goalY, goalSize, 0, 2 * Math.PI)
    
