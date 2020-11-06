@@ -35,7 +35,7 @@ canvas{ border: 2px solid black;}
  
   var x = 50;
   var y = 50;
- 
+  var toggle = 1;
   var canvas = document.getElementById('game');
   canvas.width = 700; //window.innerWidth;
   canvas.height =700; //window.innerHeight;
@@ -48,10 +48,8 @@ canvas{ border: 2px solid black;}
   var goalSize = 15;
 
   var speed = 3;
- 
-  var character = new Image();
-  character.src = 'link1 (2).png';
   
+ 
 
   function draw() {
    
@@ -92,6 +90,13 @@ canvas{ border: 2px solid black;}
     }
     //var character = new Path2D();
     
+     var character = new Image();
+    toggle += 1;
+    toggle %= 20;
+    if(toggle > 10){
+    character.src = 'link1 (2).png';
+    } else {
+    character.src = 'link2 (2).png';}
     character.addEventListener('load', function() {
      // execute drawImage statements here
     ctx.drawImage(character, x, y);
