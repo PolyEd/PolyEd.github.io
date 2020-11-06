@@ -49,7 +49,8 @@ canvas{ border: 2px solid black;}
 
   var speed = 3;
  
-  
+  var character = new Image();
+  character.src = 'link1 (2).png';
   
 
   function draw() {
@@ -90,12 +91,12 @@ canvas{ border: 2px solid black;}
       goalY = Math.random() * canvas.height;
     }
     //var character = new Path2D();
-    var character = new Image();
-    character.src = 'link1 (2).png';
+    
     character.addEventListener('load', function() {
-  // execute drawImage statements here
+     // execute drawImage statements here
     ctx.drawImage(character, x, y);
     }, false);
+    
     var goal = new Path2D();
     goal.arc(goalX, goalY, goalSize, 0, 2 * Math.PI)
    
