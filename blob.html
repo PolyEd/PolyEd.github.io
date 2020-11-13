@@ -92,13 +92,15 @@ canvas{ border: 2px solid black;}
     }
     //var character = new Path2D();
     ////////////////////////////////////////////////////////////////////
-     var character = new Image();
+     //var character = new Image();
     toggle += 1;
     toggle %= 100;
     if(toggle > 50){
-    character.src = document.getElementById("link1");
+    var character = document.getElementById("link1");
+      //character.src = document.getElementById("link1");
     } else {
-    character.src = document.getElementById("link2");}
+    //character.src = document.getElementById("link2");}
+    var character = document.getElementById("link2");
     character.addEventListener('load', function() {
      // execute drawImage statements here
     ctx.drawImage(character, x, y);
