@@ -101,11 +101,11 @@ canvas{ border: 2px solid black;}
     } else {
     //character.src = document.getElementById("link2");}
     var character = document.getElementById("link2");
-    character.addEventListener('load', function() {
+    //character.addEventListener('load', function() {
      // execute drawImage statements here
     ctx.drawImage(character, x, y);
     //for later use  ctx.drawImage(character, x, y, 56, 100, 0, true);
-    }, false);
+    //}, false);
     ////////////////////////////////////////////////////////////////////
     var goal = new Path2D();
     goal.arc(goalX, goalY, goalSize, 0, 2 * Math.PI);
