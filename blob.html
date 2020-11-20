@@ -13,6 +13,7 @@ canvas{ border: 2px solid black;}
   <img id="grass2"  src="grass2.png" alt="Link2" style="display:none">
   <img id="grass3"  src="grass3.png" alt="Link2" style="display:none">
   <img id="grass4"  src="grass4.png" alt="Link2" style="display:none">
+  <img id="rock1"  src="rock1.png" alt="Link2" style="display:none">
   <canvas id = "game"></canvas>
 <script>
   var Key = {
@@ -46,6 +47,7 @@ canvas{ border: 2px solid black;}
   canvas.width = 700; //window.innerWidth;
   canvas.height =700; //window.innerHeight;
   var grass1 = document.getElementById("grass1");
+  var rock1 = document.getElementById("rock1");
   var gx = 200;
   var gy = 200;
   var ctx = canvas.getContext('2d');
@@ -62,6 +64,8 @@ canvas{ border: 2px solid black;}
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgb(24, 255, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(rock1,400,400);
+    ctx.drawImage(rock1,400,500);
     ctx.drawImage(grass1, gx, gy);
     if(Key.isDown(Key.UP)){
       y-=speed;
