@@ -9,6 +9,10 @@ canvas{ border: 2px solid black;}
 <body>
   <img id="link1"  src="link1 (2).png" alt="Link1" style="display:none">
   <img id="link2"  src="link2 (2).png" alt="Link2" style="display:none">
+  <img id="grass1"  src="grass1.png" alt="Link2" style="display:none">
+  <img id="grass2"  src="grass2.png" alt="Link2" style="display:none">
+  <img id="grass3"  src="grass3.png" alt="Link2" style="display:none">
+  <img id="grass4"  src="grass4.png" alt="Link2" style="display:none">
   <canvas id = "game"></canvas>
 <script>
   var Key = {
@@ -55,7 +59,6 @@ canvas{ border: 2px solid black;}
 
   function draw() {
    
-    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
