@@ -62,7 +62,7 @@ canvas{ border: 2px solid black;}
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-   
+    ctx.drawImage(grass1, gx, gy);
     if(Key.isDown(Key.UP)){
       y-=speed;
       if(y < 0){
@@ -107,7 +107,7 @@ canvas{ border: 2px solid black;}
     //character.addEventListener('load', function() {
      // execute drawImage statements here
     ctx.drawImage(character, x, y);
-    ctx.drawImage(grass1, gx, gy);
+    
     var goal = new Path2D();
     goal.arc(goalX, goalY, goalSize, 0, 2 * Math.PI);
    
