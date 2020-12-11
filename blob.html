@@ -16,29 +16,29 @@ canvas{ border: 2px solid black;}
   <img id="rock1"  src="rock1.png" alt="Link2" style="display:none">
   <canvas id = "game"></canvas>
 <script>
-  var Key = {
-    
-  _pressed: {},
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40,
+  var Key = {  
+    _pressed: {},
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+
+    isDown: function(keyCode){
+      return this._pressed[keyCode];
+    },
  
-  isDown: function(keyCode){
-    return this._pressed[keyCode];
-  },
+    onKeydown: function(event) {
+      this._pressed[event.keyCode] = true;
+    },
  
-  onKeydown: function(event) {
-    this._pressed[event.keyCode] = true;
-  },
- 
-  onKeyup: function(event) {
-    delete this._pressed[event.keyCode];
-  }
- };
+    onKeyup: function(event) {
+      delete this._pressed[event.keyCode];
+    }
+  };
  
   window.addEventListener('keyup', function(event) {Key.onKeyup(event); }, false);
   window.addEventListener('keydown', function(event) {Key.onKeydown(event); }, false);
+  
   var OBSTACLES = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,1,1,0,0,0,0,0,0,0,0,0,0],
@@ -50,6 +50,7 @@ canvas{ border: 2px solid black;}
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,1]
     ];
+  
   var canvas = document.getElementById('game');
   canvas.width = 1400; //window.innerWidth;
   canvas.height =900; //window.innerHeight;
@@ -74,25 +75,20 @@ canvas{ border: 2px solid black;}
   
    function drawObs(obarray,grid){
       for (let i = 0; i < obarray.length; i++) {
-       //get the size of the inner array
-        //  var innerArrayLength =;
-       //loop the inner array
           for (let j = 0; j <  obarray[i].length; j++) {
               if (obarray[i][j]){
                 ctx.drawImage(rock1,j*grid,i*grid);
               }
-                //console.log('[' + i + ',' + j + '] = ' +obarray[i][j]);
+          }
       }
-     }
    }
+  
   var x = 50;
   var y = 50;
   var toggle = 1;
  
   var grass1 = document.getElementById("grass1");
   var rock1 = document.getElementById("rock1");
-  var gx = 200;
-  var gy = 200;
   var ctx = canvas.getContext('2d');
  
   var goalX = Math.random() * window.innerWidth;
@@ -101,16 +97,13 @@ canvas{ border: 2px solid black;}
   var goalSize = 15;
 
   var speed = 3;
-
   function draw() {
    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgb(24, 255, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     drawObs(OBSTACLES,grid);
-    //ctx.drawImage(rock1,400,400);
-    //ctx.drawImage(rock1,400,500);
-    ctx.drawImage(grass1, gx, gy);
+    ctx.drawImage(grass1, 200, 200);
     
     //MOVE UP
     if(Key.isDown(Key.UP)){
