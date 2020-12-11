@@ -74,15 +74,21 @@ canvas{ border: 2px solid black;}
       return true;
     }
     return false;
-    //for (let i = 0; i < obarray.length; i++) {
-      // get the size of the inner array
-     // var innerArrayLength = obarray[i].length;
-      // loop the inner array
-     // for (let j = 0; j < innerArrayLength; j++) {
-      //    console.log('[' + i + ',' + j + '] = ' +obarray[i][j]);
-      //}
-    //}
   }
+  
+   function drawObs(obarray,grid){
+      for (let i = 0; i < obarray.length; i++) {
+       //get the size of the inner array
+          var innerArrayLength = obarray[i].length;
+       //loop the inner array
+          for (let j = 0; j < innerArrayLength; j++) {
+              if (obarray[i][j]){
+                ctx.drawImage(rock1,i*grid,j*grid);
+              }
+                //console.log('[' + i + ',' + j + '] = ' +obarray[i][j]);
+      }
+     }
+   }
   var x = 50;
   var y = 50;
   var toggle = 1;
@@ -105,8 +111,9 @@ canvas{ border: 2px solid black;}
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgb(24, 255, 0)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(rock1,400,400);
-    ctx.drawImage(rock1,400,500);
+    drawObs(OBSTACLES,grid);
+    //ctx.drawImage(rock1,400,400);
+    //ctx.drawImage(rock1,400,500);
     ctx.drawImage(grass1, gx, gy);
     if(Key.isDown(Key.UP)){
        toggle += 1;
