@@ -83,7 +83,7 @@ canvas{ border: 2px solid black;}
        //loop the inner array
           for (let j = 0; j < innerArrayLength; j++) {
               if (obarray[i][j]){
-                ctx.drawImage(rock1,i*grid,j*grid);
+                ctx.drawImage(rock1,j*grid,i*grid);
               }
                 //console.log('[' + i + ',' + j + '] = ' +obarray[i][j]);
       }
