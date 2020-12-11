@@ -122,7 +122,7 @@ canvas{ border: 2px solid black;}
       if(y > canvas.height){
         y= y%canvas.height;
       }
-      if(!isCollidedOb(x,y+speed,player_width,player_height,OBSTACLES)){
+      if(!isCollidedOb(x,Math.abs(y+speed),player_width,player_height,OBSTACLES)){
         y+=speed;
       } 
     }
