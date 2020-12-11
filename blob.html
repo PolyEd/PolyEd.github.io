@@ -57,12 +57,12 @@ canvas{ border: 2px solid black;}
     ];
   var canvas = document.getElementById('game');
   canvas.width = 1400; //window.innerWidth;
-  canvas.height =700; //window.innerHeight;
-  var grid = 50;
+  canvas.height =900; //window.innerHeight;
+  var grid = 100;
   var player_width = document.getElementById("link1").width;
   var player_height = document.getElementById("link1").height;
-  var player_width = document.getElementById("rock1").width;
-  var player_height = document.getElementById("rock1").height;
+  //var player_width = document.getElementById("rock1").width;
+  //var player_height = document.getElementById("rock1").height;
   console.log(player_width, player_height);
   function isCollidedOb(x,y,width,height,obarray){
     upperleft = [[Math.floor(x/grid)],[Math.floor(y/grid)]];
