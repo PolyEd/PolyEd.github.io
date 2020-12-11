@@ -113,39 +113,43 @@ canvas{ border: 2px solid black;}
     ctx.drawImage(grass1, gx, gy);
     if(Key.isDown(Key.UP)){
        toggle += 1;
+       if(y < 0){
+      y= canvas.height;
+      }
       if(!isCollidedOb(x,y-speed,player_width,player_height,OBSTACLES)){
       y-=speed;
       }
-      if(y < 0){
-      y= canvas.height;
-      }
+     
     }
     if(Key.isDown(Key.DOWN)){
        toggle += 1;
-       if(!isCollidedOb(x,y+speed,player_width,player_height,OBSTACLES)){
-      y+=speed;
-       }
       if(y > canvas.height){
       y= y%canvas.height;
       }
+       if(!isCollidedOb(x,y+speed,player_width,player_height,OBSTACLES)){
+      y+=speed;
+       }
+      
     }
     if(Key.isDown(Key.LEFT)){
        toggle += 1;
+       if(x < 0){
+      x = canvas.width;
+      }
        if(!isCollidedOb(x-speed,y,player_width,player_height,OBSTACLES)){
       x-=speed;
        }
-      if(x < 0){
-      x = canvas.width;
-      }
+     
     }
     if(Key.isDown(Key.RIGHT)){
        toggle += 1;
-      if(!isCollidedOb(x+speed,y,player_width,player_height,OBSTACLES)){
-      x+=speed;
-      }
       if(x > canvas.width){
       x= x%canvas.width;
       }
+      if(!isCollidedOb(x+speed,y,player_width,player_height,OBSTACLES)){
+      x+=speed;
+      }
+      
     }
    
     if ((Math.abs(x-goalX))**2 + (Math.abs(y-goalY))**2 < (playerSize+goalSize)**2){
