@@ -55,8 +55,8 @@ canvas{ border: 2px solid black;}
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     ];
-  var player_width = document.getElementById("link1").clientWidth;
-  var player_height = document.getElementById("link1").clientHeight;
+  var player_width = (document.getElementById("link1")).clientWidth;
+  var player_height = (document.getElementById("link1")).clientHeight;
   console.log(player_width, player_height);
   function isCollidedOb(x,y,obarray){
     for (let i = 0; i < obarray.length; i++) {
