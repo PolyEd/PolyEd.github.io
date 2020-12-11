@@ -75,9 +75,9 @@ canvas{ border: 2px solid black;}
    function drawObs(obarray,grid){
       for (let i = 0; i < obarray.length; i++) {
        //get the size of the inner array
-          var innerArrayLength = obarray[i].length;
+        //  var innerArrayLength =;
        //loop the inner array
-          for (let j = 0; j < innerArrayLength; j++) {
+          for (let j = 0; j <  obarray[i].length; j++) {
               if (obarray[i][j]){
                 ctx.drawImage(rock1,j*grid,i*grid);
               }
