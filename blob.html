@@ -111,45 +111,49 @@ canvas{ border: 2px solid black;}
     //ctx.drawImage(rock1,400,400);
     //ctx.drawImage(rock1,400,500);
     ctx.drawImage(grass1, gx, gy);
+    
+    //MOVE UP
     if(Key.isDown(Key.UP)){
-       toggle += 1;
-       if(y < 0){
-      y= canvas.height;
+      toggle += 1;
+      if(y < 0){
+        y= canvas.height;
       }
       if(!isCollidedOb(x,y-speed,player_width,player_height,OBSTACLES)){
-      y-=speed;
+        y-=speed;
       }
-     
     }
+    
+    //MOVE DOWN
     if(Key.isDown(Key.DOWN)){
-       toggle += 1;
+      toggle += 1;
       if(y > canvas.height){
-      y= y%canvas.height;
+        y= y%canvas.height;
       }
-       if(!isCollidedOb(x,y+speed,player_width,player_height,OBSTACLES)){
-      y+=speed;
-       }
-      
+      if(!isCollidedOb(x,y+speed,player_width,player_height,OBSTACLES)){
+        y+=speed;
+      } 
     }
+    
+    //MOVE LEFT
     if(Key.isDown(Key.LEFT)){
-       toggle += 1;
-       if(x < 0){
-      x = canvas.width;
+      toggle += 1;
+      if(x < 0){
+        x = canvas.width-player_width;
       }
-       if(!isCollidedOb(x-speed,y,player_width,player_height,OBSTACLES)){
-      x-=speed;
-       }
-     
+      if(!isCollidedOb(x-speed,y,player_width,player_height,OBSTACLES)){
+        x-=speed;
+      }
     }
+    
+    //MOVE RIGHT
     if(Key.isDown(Key.RIGHT)){
-       toggle += 1;
+      toggle += 1;
       if(x > canvas.width){
-      x= x%canvas.width;
+        x= x%canvas.width;
       }
       if(!isCollidedOb(x+speed,y,player_width,player_height,OBSTACLES)){
-      x+=speed;
+        x+=speed;
       }
-      
     }
    
     if ((Math.abs(x-goalX))**2 + (Math.abs(y-goalY))**2 < (playerSize+goalSize)**2){
