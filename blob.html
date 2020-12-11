@@ -64,6 +64,7 @@ canvas{ border: 2px solid black;}
   //var player_width = document.getElementById("rock1").width;
   //var player_height = document.getElementById("rock1").height;
   console.log(player_width, player_height);
+  
   function isCollidedOb(x,y,width,height,obarray){
     upperleft = [[Math.floor(x/grid)],[Math.floor(y/grid)]];
     lowerleft =  [[Math.floor((x)/grid)],[Math.floor((y+height)/grid)]];
@@ -117,28 +118,36 @@ canvas{ border: 2px solid black;}
     ctx.drawImage(grass1, gx, gy);
     if(Key.isDown(Key.UP)){
        toggle += 1;
+      if(!isCollidedOb(x,y-speed,player_width,player_height,OBSTACLES)){
       y-=speed;
+      }
       if(y < 0){
       y= canvas.height;
       }
     }
     if(Key.isDown(Key.DOWN)){
        toggle += 1;
+       if(!isCollidedOb(x,y+speed,player_width,player_height,OBSTACLES)){
       y+=speed;
+       }
       if(y > canvas.height){
       y= y%canvas.height;
       }
     }
     if(Key.isDown(Key.LEFT)){
        toggle += 1;
+       if(!isCollidedOb(x-speed,y,player_width,player_height,OBSTACLES)){
       x-=speed;
+       }
       if(x < 0){
       x = canvas.width;
       }
     }
     if(Key.isDown(Key.RIGHT)){
        toggle += 1;
+      if(!isCollidedOb(x+speed,y,player_width,player_height,OBSTACLES)){
       x+=speed;
+      }
       if(x > canvas.width){
       x= x%canvas.width;
       }
