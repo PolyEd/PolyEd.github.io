@@ -71,7 +71,7 @@ canvas{ border: 2px solid black;}
     upperright = [[Math.floor((x+width)/grid)],[Math.floor((y)/grid)]];
     lowerright = [[Math.floor((x+width)/grid)],[Math.floor((y+height)/grid)]];
     
-    if(obarray[upperleft] || obarray[upperright] || obarray[lowerleft] || obarray[lowerright]){
+    if(obarray[upperleft[0]][upperleft[1]] || obarray[lowerleft[0]][lowerleft[1]] || obarray[upperright[0]][upperright[1]] || obarray[lowerright[0]][lowerright[1]]){
       return true;
     }
     return false;
