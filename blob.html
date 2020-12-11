@@ -110,7 +110,8 @@ canvas{ border: 2px solid black;}
       toggle += 1;
       if(y < 0){
         y= canvas.height-player_height;
-        console.log(y)
+        console.log("y is:");
+        console.log(y);
       }
       if(!isCollidedOb(x,y-speed,player_width,player_height,OBSTACLES)){
         y-=speed;
