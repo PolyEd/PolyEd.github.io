@@ -55,25 +55,38 @@ canvas{ border: 2px solid black;}
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     ];
+  var canvas = document.getElementById('game');
+  canvas.width = 1400; //window.innerWidth;
+  canvas.height =700; //window.innerHeight;
+  var grid = 50;
   var player_width = document.getElementById("link1").width;
   var player_height = document.getElementById("link1").height;
+  var player_width = document.getElementById("rock1").width;
+  var player_height = document.getElementById("rock1").height;
   console.log(player_width, player_height);
-  function isCollidedOb(x,y,obarray){
-    for (let i = 0; i < obarray.length; i++) {
-      // get the size of the inner array
-      var innerArrayLength = obarray[i].length;
-      // loop the inner array
-      for (let j = 0; j < innerArrayLength; j++) {
-          console.log('[' + i + ',' + j + '] = ' +obarray[i][j]);
-      }
+  function isCollidedOb(x,y,width,height,obarray){
+    upperleft = [[Math.floor(x/grid)],[Math.floor(y/grid)]];
+    lowerleft =  [[Math.floor((x)/grid)],[Math.floor((y+height)/grid)]];
+    upperright = [[Math.floor((x+width)/grid)],[Math.floor((y)/grid)]];
+    lowerright = [[Math.floor((x+width)/grid)],[Math.floor((y+height)/grid)]];
+    
+    if(obarray[upperleft] || obarray[upperright] || obarray[lowerleft] || obarray[lowerright]){
+      return true;
     }
+    return false;
+    //for (let i = 0; i < obarray.length; i++) {
+      // get the size of the inner array
+     // var innerArrayLength = obarray[i].length;
+      // loop the inner array
+     // for (let j = 0; j < innerArrayLength; j++) {
+      //    console.log('[' + i + ',' + j + '] = ' +obarray[i][j]);
+      //}
+    //}
   }
   var x = 50;
   var y = 50;
   var toggle = 1;
-  var canvas = document.getElementById('game');
-  canvas.width = 1400; //window.innerWidth;
-  canvas.height =700; //window.innerHeight;
+ 
   var grass1 = document.getElementById("grass1");
   var rock1 = document.getElementById("rock1");
   var gx = 200;
