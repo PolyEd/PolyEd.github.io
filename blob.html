@@ -109,7 +109,7 @@ canvas{ border: 2px solid black;}
     if(Key.isDown(Key.UP)){
       toggle += 1;
       if(y < 0){
-        y= canvas.height;
+        y= canvas.height+player_height;
       }
       if(!isCollidedOb(x,y-speed,player_width,player_height,OBSTACLES)){
         y-=speed;
