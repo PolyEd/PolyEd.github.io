@@ -21,6 +21,7 @@ function preload(){
     stars = loadImage("stars.png");
     playerImage = loadImage("link.png");
     meteorImage = loadImage("unnamed.png");
+    gameoverImage = loadImage("gameover.png")
 }
 
 function setup(){
@@ -95,7 +96,9 @@ function draw(){
     }
     }   //NEW 
    if (player.hp <= 0){ //NEW
-       GAMEOVER = 1;  //NEW 
+       GAMEOVER = 1;
+       background(0);
+       image(gameoverImage,0,0,1000,700);  //NEW 
    }  //NEW
 }
 
