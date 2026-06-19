@@ -9,6 +9,234 @@ y551eff888d10:agvudt0/f81gt0-5v-5f61:0ru4fjhjhfiif4vt3v5d1uw <br>
 
 <h1>Websites:</h1>
 <p>
+  <div id="cryptarithm-widget"></div>
+
+<script>
+(function () {
+  const root = document.getElementById("cryptarithm-widget");
+
+  root.innerHTML = `
+    <style>
+      #cryptarithm-widget {
+        font-family: Arial, sans-serif;
+        max-width: 760px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 18px;
+        background: #f7f7f7;
+      }
+      #cryptarithm-widget h2 {
+        margin-top: 0;
+      }
+      #cryptarithm-widget textarea {
+        width: 100%;
+        height: 110px;
+        font-family: monospace;
+        font-size: 16px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      #cryptarithm-widget button {
+        margin-top: 10px;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        background: #2364aa;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      #cryptarithm-widget button:hover {
+        background: #174a80;
+      }
+      #cryptarithm-results {
+        margin-top: 15px;
+        background: white;
+        border: 1px solid #ddd;
+        padding: 12px;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        font-family: monospace;
+      }
+    </style>
+
+    <h2>Cryptarithm Solver</h2>
+    <p>Enter a puzzle like:</p>
+    <pre>SEND + MORE = MONEY</pre>
+
+    <textarea id="cryptarithm-input">SEND + MORE = MONEY</textarea>
+    <br>
+    <label>
+      <input type="checkbox" id="no-leading-zero" checked>
+      No leading zeroes
+    </label>
+    <br>
+    <button id="solve-cryptarithm">Solve</button>
+
+    <div id="cryptarithm-results">Results will appear here.</div>
+  `;
+
+  document.getElementById("solve-cryptarithm").addEventListener("click", solveCryptarithm);
+
+  function solveCryptarithm() {
+    const input = document.getElementById("cryptarithm-input").value.toUpperCase();
+    const noLeadingZero = document.getElementById("no-leading-zero").checked;
+    const output = document.getElementById("cryptarithm-results");
+
+    output.textContent = "Solving...";
+
+    const parsed = parsePuzzle(input);
+
+    if (!parsed) {
+      output.textContent = "Invalid format. Use something like: SEND + MORE = MONEY";
+      return;
+    }
+
+    const { leftWords, rightWord } = parsed;
+    const allWords = [...leftWords, rightWord];
+
+    const letters = [...new Set(input.match(/[A-Z]/g) || [])];
+
+    if (letters.length > 10) {
+      output.textContent = "Too many unique letters. A digit puzzle can use at most 10 letters.";
+      return;
+    }
+
+    const leadingLetters = new Set(
+      allWords
+        .filter(w => w.length > 1)
+        .map(w => w[0])
+    );
+
+    const reversedLeft = leftWords.map(w => w.split("").reverse());
+    const reversedRight = rightWord.split("").reverse();
+    const maxLen = Math.max(...allWords.map(w => w.length));
+
+    const solutions = [];
+    const assignment = {};
+    const usedDigits = new Set();
+
+    function backtrackColumn(col, row, carry) {
+      if (solutions.length >= 100) return;
+
+      if (col === maxLen) {
+        if (carry === 0) {
+          solutions.push({ ...assignment });
+        }
+        return;
+      }
+
+      if (row < reversedLeft.length) {
+        const letter = reversedLeft[row][col];
+
+        if (!letter) {
+          backtrackColumn(col, row + 1, carry);
+          return;
+        }
+
+        assignLetter(letter, digit => {
+          backtrackColumn(col, row + 1, carry + digit);
+        });
+
+        return;
+      }
+
+      const resultLetter = reversedRight[col];
+      const requiredDigit = carry % 10;
+      const newCarry = Math.floor(carry / 10);
+
+      if (!resultLetter) {
+        if (requiredDigit === 0) {
+          backtrackColumn(col + 1, 0, newCarry);
+        }
+        return;
+      }
+
+      if (assignment[resultLetter] !== undefined) {
+        if (assignment[resultLetter] === requiredDigit) {
+          backtrackColumn(col + 1, 0, newCarry);
+        }
+      } else {
+        if (usedDigits.has(requiredDigit)) return;
+        if (noLeadingZero && requiredDigit === 0 && leadingLetters.has(resultLetter)) return;
+
+        assignment[resultLetter] = requiredDigit;
+        usedDigits.add(requiredDigit);
+
+        backtrackColumn(col + 1, 0, newCarry);
+
+        usedDigits.delete(requiredDigit);
+        delete assignment[resultLetter];
+      }
+    }
+
+    function assignLetter(letter, callback) {
+      if (assignment[letter] !== undefined) {
+        callback(assignment[letter]);
+        return;
+      }
+
+      for (let digit = 0; digit <= 9; digit++) {
+        if (usedDigits.has(digit)) continue;
+        if (noLeadingZero && digit === 0 && leadingLetters.has(letter)) continue;
+
+        assignment[letter] = digit;
+        usedDigits.add(digit);
+
+        callback(digit);
+
+        usedDigits.delete(digit);
+        delete assignment[letter];
+      }
+    }
+
+    backtrackColumn(0, 0, 0);
+
+    if (solutions.length === 0) {
+      output.textContent = "No solutions found.";
+      return;
+    }
+
+    output.textContent = solutions.map((sol, i) => {
+      const mapping = Object.keys(sol)
+        .sort()
+        .map(k => `${k}=${sol[k]}`)
+        .join(", ");
+
+      const equation = allWords
+        .map(word => `${word} = ${wordToNumber(word, sol)}`)
+        .join("\n");
+
+      return `Solution ${i + 1}\n${mapping}\n\n${equation}`;
+    }).join("\n\n--------------------\n\n");
+  }
+
+  function parsePuzzle(input) {
+    const clean = input.replace(/\s+/g, "");
+    const parts = clean.split("=");
+
+    if (parts.length !== 2) return null;
+
+    const leftWords = parts[0].split("+");
+    const rightWord = parts[1];
+
+    if (
+      leftWords.length < 1 ||
+      !leftWords.every(w => /^[A-Z]+$/.test(w)) ||
+      !/^[A-Z]+$/.test(rightWord)
+    ) {
+      return null;
+    }
+
+    return { leftWords, rightWord };
+  }
+
+  function wordToNumber(word, assignment) {
+    return Number(word.split("").map(ch => assignment[ch]).join(""));
+  }
+})();
+</script>
+  
   <img src="balloony.png" alt = "An Awesome Picture"> <br>
 
   <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic_document"> HTML Side-by-side Editor </a> <br>
